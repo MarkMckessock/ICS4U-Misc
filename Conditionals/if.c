@@ -1,7 +1,9 @@
 //If structure:
-if (condition || condition) { // || = or, && = and
+if (condition || condition) { // || = or
   program;
 }
-else {
+else if (condition && condition){ //&& = and
   program;
 }
+else
+  program;
