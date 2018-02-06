@@ -19,14 +19,22 @@ int main(void){
   temp = input;
 
 //Get the number of digits in the number
-  while(temp != 0) {
-    temp /= 10;
-    num_of_digits ++;
+  if (input == 0)
+    num_of_digits = 1;
+  else {
+    while(temp != 0) {
+      temp /= 10;
+      num_of_digits ++;
+    }
   }
 
   for (i=1;i <= num_of_digits;i++){
-    current_digit = input / power(10,((num_of_digits)-i));
-    input -= power(10,((num_of_digits)-i))*current_digit;
+    if (input <= 0)
+      current_digit = 0;
+    else {
+      current_digit = input / power(10,((num_of_digits)-i));
+      input -= power(10,((num_of_digits)-i))*current_digit;
+    }
 
     switch (current_digit) {
       case 0:
