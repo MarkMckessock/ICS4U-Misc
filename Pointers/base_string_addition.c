@@ -17,7 +17,7 @@ void convert_chars_to_ints(char *string){
       string[i] -= ('A' - 10);
     }
     else if (string[i] >= '0' && string[i] <= '9'){
-      string[i] -= ('0');
+      string[i] -= '0';
     }
   }
 }
@@ -50,13 +50,11 @@ void add_strings(char *n1, char *n2, int base,char *ans){
 
   convert_chars_to_ints(n1);
   convert_chars_to_ints(n2);
-  // printf("%i\n",len(n1));
-  // for (i=0;i<len(n1);i++)
-  //   printf("n1: %i n2:%i\n",n1[i],n2[i]);
+
   len_n1 = len(n1);
   len_n2 = len(n2);
 
-  // Find the longest and shortest strings
+  // Find the longest and shortest string
   if (len_n1 > len_n2){
     longest_string = n1;
     shortest_string = n2;
@@ -68,7 +66,6 @@ void add_strings(char *n1, char *n2, int base,char *ans){
   for (i=0;i<=len(longest_string);i++){
 
     if (i < len(shortest_string)){ // Adding both strings
-      //printf("N1: %i N2: %i sum: %i carry %i\n",n1[len_n1-1-i],n2[len_n2-1-i],n1[len_n1-1-i]+n2[len_n2-1-i]+carry,carry);
       if ((n1[len_n1-1-i]+n2[len_n2-1-i]+carry) <= (base-1)){ //Check that the addition is less than 19.
           ans[i] = (n1[len_n1-1-i]+n2[len_n2-1-i]+carry);
           carry = 0;
@@ -86,10 +83,10 @@ void add_strings(char *n1, char *n2, int base,char *ans){
     if (i >= len(shortest_string)){ // Adding only the longer string
       if ((longest_string[len(longest_string)-1-i]+carry) <= (base-1)){
         ans[i] = longest_string[len(longest_string)-1-i] + carry;
-        if (ans[i] == 0 && i == len(longest_string)) {// If there is no carry in the last digit set it to termination char
-          ans[i] = '\0';
-        }
-        else if (ans[i] == 1 && i == len(longest_string)) //If there is carry over set the next digit to terminator.
+        // if (ans[i] == 0 && i == len(longest_string)) {// If there is no carry in the last digit set it to termination char
+        //   ans[i] = '\0';
+        // }
+        if (ans[i] == 1 && i == len(longest_string)) //If there is carry over in the last digit, set the next digit to terminator.
           ans[i+1] = '\0';
         carry = 0;
       }
@@ -109,10 +106,9 @@ void add_strings(char *n1, char *n2, int base,char *ans){
 
 int main(void){
   int base = 20,i;
-  char num1[] = "HA2G3H";
-  char num2[] = "I3BC";
-  char result[20];
+  char num1[] = "HA2G3H",num2[] = "I3BC",result[20];
   char *n1 = num1,*n2=num2,*ans=result;
+
   add_strings(n1,n2,base,ans);
-  printf("%s",result);
+  printf("%s",ans);
 }
