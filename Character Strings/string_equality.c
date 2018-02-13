@@ -9,7 +9,7 @@ int len(char str[]){
   return i;
 }
 
-bool test_string_equality(char str_1[], char str_2[]){
+bool test_string_equality(char *str_1, char *str_2){
   bool string_equal = true;
   int i;
   if (len(str_1) == len(str_2)){
